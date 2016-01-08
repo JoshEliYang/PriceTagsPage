@@ -6,77 +6,77 @@
 	<link rel="stylesheet" type="text/css" href="js/easyui/themes/default/easyui.css">
 	<link rel="stylesheet" type="text/css" href="js/easyui/themes/icon.css">
 	<link rel="stylesheet" type="text/css" href="js/easyui/demo/demo.css">
+	<link rel="stylesheet" type="text/css" href="css/page_detail.css">
 	<script type="text/javascript" src="js/easyui/jquery.min.js"></script>
 	<script type="text/javascript" src="js/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="js/easyui/locale/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="js/purl.js"></script>
 	<script type="text/javascript" src="js/page_detail.js"></script>
 	<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
-	<style>
-		td{
-			padding-bottom: 5px;
-			padding-top: 5px;
-		}
-		#page3_cancel{
-			position: absolute;
-			bottom: 10%;
-			right: 15%;
-		}
-	</style>
 </head>
 <body>
 	<div id="box" style="width : 100%;">
-		<div id="qrcode" style="width : 50%; height : 160px; float : left; text-align : center; padding-top : 20px;"></div>
-		<div style="width : 50%; height : 160px; float : right; padding-top : 20px;">
-			<span id="goods_name" style="font-size : 28px; font-family : 黑体;"></span>
-			<div style="width : 100%; height : 30px; padding-top : 20px;">
-				<span style = "float : left; width : 100px; font-size : 15px;">商品单位：</span>
-				<span id = "goods_unit" style = "float : left; font-size : 15px;"></span>
+		<div id="qrcode"></div>
+		<div id="box_list1">
+			<span id="goods_name"></span>
+			<div id="box_list1_1">
+				<span id="span_title">商品单位：</span>
+				<span id = "goods_unit"></span>
 			</div>
-			<div style="width : 100%; height : 30px; padding-top : 10px;">
-				<span style = "float : left; width : 100px;  font-size : 15px;">是否可见：</span>
-				<span id = "goods_visible" style = "float : left;  font-size : 15px;"></span>
+			<div id="box_list1_2">
+				<span id="span_title">是否可见：</span>
+				<span id = "goods_visible"></span>
 			</div>
-			<div style="width : 100%; height : 30px; padding-top : 10px;">
-				<span style = "float : left; width : 100px;  font-size : 15px;">体验店编号：</span>
-				<span id = "goods_shopid" style = "float : left;  font-size : 15px;"></span>
-			</div>
-			
-		</div>
-		<div style="width : 50%; height : 260px; float : left; padding-top : 30px;">
-			<div style="width : 100%; height : 30px; padding-left : 15px;">
-				<span style = "float : left; width : 100px; font-size : 15px;">Type：</span>
-				<span id = "goods_type" style = "float : left; font-size : 15px;"></span>
-			</div>
-			<div style="width : 100%; height : 30px; padding-top : 25px; padding-left : 15px;">
-				<span style = "float : left; width : 100px;  font-size : 15px;">salesPrice：</span>
-				<span id = "goods_salesprice" style = "float : left;  font-size : 15px;"></span>
-			</div>
-			<div style="width : 100%; height : 30px; padding-top : 25px; padding-left : 15px;">
-				<span style = "float : left; width : 100px;  font-size : 15px;">propmPrice：</span>
-				<span id = "goods_propmprice" style = "float : left;  font-size : 15px;"></span>
-			</div>
-			<div style="width : 100%; height : 30px; padding-top : 25px; padding-left : 15px;">
-				<span style = "float : left; width : 100px;  font-size : 15px;">marketPrice：</span>
-				<span id = "goods_marketprice" style = "float : left;  font-size : 15px;"></span>
+			<div id="box_list1_3">
+				<span id="span_title">体验店编号：</span>
+				<span id = "goods_shopid"></span>
 			</div>
 			
 		</div>
-		<div style="width : 50%; height : 260px; float : right; padding-top : 30px;">
-			<div style="width : 100%; height : 30px;">
-				<span style = "float : left; width : 100px; font-size : 15px;">商品编号：</span>
-				<span id = "goods_No" style = "float : left; font-size : 15px;"></span>
+		<div id="box_list2">
+			<div id="box_list2_1">
+				<span id="span_title">Type：</span>
+				<span id = "goods_type"></span>
 			</div>
-			<div style="width : 100%; height : 30px; padding-top : 25px;">
-				<span style = "float : left; width : 100px;  font-size : 15px;">商品来源：</span>
-				<span id = "goods_origin" style = "float : left;  font-size : 15px;"></span>
+			<div id="box_list2_2">
+				<span id="span_title">salesPrice：</span>
+				<span id = "goods_salesprice"></span>
 			</div>
-			<div style="width : 100%; height : 30px; padding-top : 25px;">
-				<span style = "float : left; width : 100px;  font-size : 15px;">商品分类：</span>
-				<span id = "goods_specifications" style = "float : left;  font-size : 15px;"></span>
+			<div id="box_list2_3">
+				<span id="span_title">propmPrice：</span>
+				<span id = "goods_propmprice"></span>
+			</div>
+			<div id="box_list2_4">
+				<span id="span_title">marketPrice：</span>
+				<span id = "goods_marketprice"></span>
+			</div>
+			
+		</div>
+		<div id="box_list3">
+			<div id="box_list3_1">
+				<span id="span_title">商品编号：</span>
+				<span id = "goods_No"></span>
+			</div>
+			<div id="box_list3_2">
+				<span id="span_title">商品来源：</span>
+				<span id = "goods_origin"></span>
+			</div>
+			<div id="box_list3_3">
+				<span id="span_title">商品分类：</span>
+				<span id = "goods_specifications"></span>
 			</div>			
 		</div>
-		<a href="" class="easyui-linkbutton" id="page3_cancel" style="width : 150px" onclick="detailCancel()">返回</a>
+		<!-- <a href="" class="easyui-linkbutton" id="page3_cancel" style="width : 150px" onclick="detailCancel();return false;">返回</a> -->
+		<table id="page4_button" style="width : 95%; text-align : center;">
+			<tr>
+				<th>
+					<a href="" class="easyui-linkbutton" id="page4_update_jump" onclick="detailUpdatejump();return false;">修改</a>
+				</th>
+				<th>
+					<a href="" class="easyui-linkbutton" id="page4_cancel" onclick="detailCancel();return false;">返回</a>
+				</th>
+			</tr>
+		</table>
 	</div>
 </body>
 </html>

@@ -2,7 +2,12 @@ var data_id = $.url().param('id');
 var data_qrcode;
 
 function detailCancel(){
-	window.history.go(-1);
+	var cancel_url = document.referrer;	
+	window.location.replace(cancel_url);
+}
+function detailUpdatejump(){
+	var detailupdatejump_url = "page_update.html?id="+data_id;
+	window.location.replace(detailupdatejump_url);
 }
 $(function() {
 	$.ajax({

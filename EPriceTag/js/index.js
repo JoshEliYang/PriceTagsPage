@@ -17,7 +17,11 @@ $.ajax({
 	}
 });
 
-
+function window_onload(){
+	if(location.href.indexOf('#reloaded')==-1){
+		window.history.go(0);
+	}
+}
 // json对象解析
 var jsonData_str = JSON.stringify(jsonData.data);
 var jsonData_after = eval("(" + jsonData_str + ")");
@@ -30,17 +34,18 @@ function Dele(index){
             // location.reload();
             // alert(dele_id);
             // ==========删除=================>
-            // $.ajax({
-            // 	type : 'DELETE',
-            // 	url : 'http://127.0.0.1:8080/pricetaginfo/pricetags/'+dele_id,
-            // 	success : function(){
-            // 		alert("删除成功！");
-            // 	},
-            // 	error : function(){
-            // 		alert("删除失败！");
-            // 	}
-            // });
-    		// window.location.reload();
+            $.ajax({
+            	async : false,
+            	type : 'DELETE',
+            	url : 'http://127.0.0.1:8080/pricetaginfo/pricetags/'+dele_id,
+            	success : function(){
+            		alert("删除成功！");
+            	},
+            	error : function(){
+            		alert("删除失败！");
+            	}
+            });
+    		window.location.reload();
     		//==========insert===============>
     		// $.ajax({
     		// 	type : 'POST',
@@ -191,5 +196,4 @@ $(function(){
 
 	});
 	$("#table").datagrid('loadData', jsonData_after);
-
 });

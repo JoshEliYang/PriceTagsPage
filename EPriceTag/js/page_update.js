@@ -2,7 +2,8 @@ var data_id = $.url().param('id');
 var data_qrcode;
 // alert(data_id);
 function updateCancel () {
-	window.history.go(-1); 
+	var cancel_url = document.referrer;	
+	window.location.replace(cancel_url);
 }
 $(function() {
 	$.ajax({
@@ -68,8 +69,6 @@ function updateSubmit(){
 		visible_radio = 0;
 	}
 	var update_data = '{"goodsOrigin":"'+ $('#goods_origin').val() +'","specifications":"'+ $('#goods_specifications').val() +'","marketPrice":' + parseFloat($('#goods_marketprice').val()) + ',"shopId":"' + $('#goods_shopid').val() +'","goodsNo":"' + $('#goods_No').val() + '","goodsName":"' + $('#goods_name').html() + '","unit":"' + $('#goods_unit').val() + '","salesPrice":' + parseFloat($('#goods_salesprice').val()) + ',"propmPrice":' + parseFloat($('#goods_propmprice').val()) + ',"qrCode":"' + $('#goods_qrcode').val() + '","visible":' + visible_radio + ',"id":' + parseInt(data_id) + ',"type":' + parseInt($('#goods_type').val()) + '}';
-	// var update_data = '{"goodsOrigin":"11","specifications":"11","marketPrice":0.0,"shopId":"1","goodsNo":"123123","goodsName":"asdasdasd2222222","unit":"11","salesPrice":0.0,"propmPrice":0.0,"qrCode":"aaaa","visible":0,"id":3,"type":0}';
-	// alert(update_data);
 
 	$.ajax({
 		type : 'PATCH',
@@ -90,5 +89,5 @@ function updateSubmit(){
         }
 	});
 	var back_url = "page_list.html";
-	window.open(back_url);
+	window.location.replace(back_url);
 }
