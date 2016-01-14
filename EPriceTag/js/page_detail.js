@@ -12,7 +12,7 @@ function detailUpdatejump(){
 $(function() {
 	$.ajax({
 		method : 'GET',
-		url : 'http://127.0.0.1:8080/pricetaginfo/pricetags/'+data_id,
+		url : 'http://192.168.1.13:8080/pricetaginfo/pricetags/'+data_id,
 		async : false,
 		dataType : 'json',
 		crossDomain : true,

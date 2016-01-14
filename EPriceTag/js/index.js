@@ -1,7 +1,7 @@
 var jsonData = "";
 $.ajax({
 	method : 'GET',
-	url : 'http://127.0.0.1:8080/pricetaginfo/pricetags',
+	url : 'http://192.168.1.13:8080/pricetaginfo/pricetags',
 	async : false,
 	dataType : 'json',
 	crossDomain : true,
@@ -37,7 +37,7 @@ function Dele(index){
             $.ajax({
             	async : false,
             	type : 'DELETE',
-            	url : 'http://127.0.0.1:8080/pricetaginfo/pricetags/'+dele_id,
+            	url : 'http://192.168.1.13:8080/pricetaginfo/pricetags/'+dele_id,
             	success : function(){
             		alert("删除成功！");
             	},
