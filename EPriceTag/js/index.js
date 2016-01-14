@@ -1,7 +1,13 @@
 var jsonData = "";
+//测试数据（URL）
+var g_url = "http://127.0.0.1:8080/pricetaginfo/pricetags";
+var data_origins = ["澳大利亚","日本","美国","新西兰"];
+var data_areas = [{"id":"KJG001","name":"杨浦店"},{"id":"KJG002","name":"大华店"},{"id":"KJG003","name":"徐汇店"},{"id":"KJG004","name":"浦东店"}];
+//正式数据（URL）
+// var g_url = "http://120.26.54.131:8080/pricetag/pricetags"
 $.ajax({
 	method : 'GET',
-	url : 'http://192.168.1.13:8080/pricetaginfo/pricetags',
+	url : g_url,
 	async : false,
 	dataType : 'json',
 	crossDomain : true,
@@ -35,53 +41,90 @@ function Dele(index){
             // alert(dele_id);
             // ==========删除=================>
             $.ajax({
-            	async : false,
-            	type : 'DELETE',
-            	url : 'http://192.168.1.13:8080/pricetaginfo/pricetags/'+dele_id,
-            	success : function(){
-            		alert("删除成功！");
-            	},
-            	error : function(){
-            		alert("删除失败！");
-            	}
+				async : false,
+				type : 'DELETE',
+				url : g_url+'/'+dele_id,
+				success : function(){
+					alert("删除成功！");
+				},
+				error : function(){
+					alert("删除失败！");
+				}
             });
-    		window.location.reload();
-    		//==========insert===============>
-    		// $.ajax({
-    		// 	type : 'POST',
-    		// 	url : 'http://127.0.0.1:8080/pricetaginfo/pricetags',
-    		// 	async : false,
-    		// 	contentType : 'application/json',
-    		// 	data : '{"goodsOrigin":"11","specifications":"11","marketPrice":0.0,"shopId":"1","goodsNo":"123123","goodsName":"asdasdasd2222222","unit":"11","salesPrice":0.0,"propmPrice":0.0,"qrCode":"aaaa","visible":0,"id":7,"type":0}',
-    		// 	crossDomain : true,
-    		// 	success : function(response){
-    		// 		if(response.code==0){alert(response.msg);}
-    		// 		window.location.reload();
-    		// 	},
-    		// 	error : function(response){
-    		// 		alert(response.msg);
-    		// 	}
-    		// });
+			window.location.reload();
+			//==========insert===============>
+			// $.ajax({
+				// type : 'POST',
+				// url : 'http://127.0.0.1:8080/pricetaginfo/pricetags',
+				// async : false,
+				// contentType : 'application/json',
+				// data : '{"goodsOrigin":"11","specifications":"11","marketPrice":0.0,"shopId":"1","goodsNo":"123123","goodsName":"asdasdasd2222222","unit":"11","salesPrice":0.0,"propmPrice":0.0,"qrCode":"aaaa","visible":0,"id":7,"type":0}',
+				// crossDomain : true,
+				// success : function(response){
+				// 	if(response.code==0){alert(response.msg);}
+				// 	window.location.reload();
+				// },
+				// error : function(response){
+				// 	alert(response.msg);
+				// }
+			// });
         }
         else {
 
         }
     });
 }
+function keyClear(){
+	$('#select_shop').val(0);
+	$('#select_area').val(0);
+	$('#input_search').val("");
+}
+
+function keySearch(){
+	var select_shop_value = $('#select_shop').val();
+	var select_area_text = $('#select_area option:selected').text();
+	var select_input_key = $('#input_search').val();
+	var search_json_data = {"select_shop":select_shop_value,"select_area":select_area_text,"input_search":select_input_key};
+	
+	window.sessionStorage.temp_data = search_json_data;
+
+
+	console.log(sessionStorage.temp_data.select_area);
+}
+
 function openUrl(index){
 	var jump_url = "page_detail.html?id="+index;
 	window.location.href = jump_url;
 }
+
 function dataUpdate(index){
 	// alert(index);
 	var jump_url = "page_update.html?id="+index;
 	window.location.href = jump_url;
 }
 $(function(){
+	// $("#tb").append('<div id="box2" style="padding : 5px"></div>');
+	$("#tb").append('<div id="box2" style="padding : 5px"></div>');
+	$("#box2").append('<span id="span_shop">区域：</span><select id="select_shop"></select>');
+	$("#box2").append('<span id="span_area">商品产地：</span><select id="select_area"></select>');
+	$("#box2").append('<a href="javascript:void(0)" id="clear_button" class="easyui-linkbutton" iconCls="icon-clear" style="float : right; height : 20px;" onclick="keyClear()">清空</a>');
+	$("#box2").append('<a href="javascript:void(0)" id="search_button" class="easyui-linkbutton" iconCls="icon-search" style="float : right; height: 20px;" onclick="keySearch()">查询</a>');
+	$("#box2").append('<input id="input_search" type="text" class="textbox" name="user">');
+	$("#box2").append('<span id="span_search">商品名（支持模糊）</span>');
+	$("#select_shop").append('<option value=0>全部</option>');
+	$("#select_area").append('<option value=0>全部</option>');
+
+	$('#tree_box').tree({
+		url : 'tree.json',
+		animate : true,
+		formatter : function(node){
+			return node.text;
+		}
+	});
+
 	$('#table').datagrid({
 		width : 1200,
 		title : '表格',
-		// url : jsonData_after,
 		fitColumns : true,
 		singleSelect : true,
 		striped : true,
@@ -93,8 +136,8 @@ $(function(){
 		toolbar : '#tb',
 		//固定列
 		// frozenColumns:[[
-	    //                {title:'编号',field:'code',width:50}
-		// 		]],
+		//                {title:'编号',field:'code',width:50}
+		// ]],
 		columns : [[
 			{
 				field : 'shopId',
@@ -130,9 +173,10 @@ $(function(){
 				field : 'propmPrice',
 				title : 'propmPrice',
 				width : 100,
-				halign : 'center'
+				halign : 'center',
+				hidden : true
 			},
-			//qrcode应暂不显示
+			//qrcode不显示
 			{
 				field : 'qrCode',
 				title : 'qrCode',
@@ -140,7 +184,7 @@ $(function(){
 				halign : 'center',
 				hidden : true
 			},
-			//visible应暂不显示
+			//visible不显示
 			{
 				field : 'visible',
 				title : 'visible',
@@ -164,9 +208,10 @@ $(function(){
 				field : 'marketPrice',
 				title : 'marketPrice',
 				width : 100,
-				halign : 'center'
+				halign : 'center',
+				hidden : true
 			},
-			//id应暂不显示
+			//id不显示
 			{
 				field : 'id',
 				title : 'id',
@@ -174,7 +219,7 @@ $(function(){
 				halign : 'center',
 				hidden : true
 			},
-			//type应暂不显示
+			//type不显示
 			{
 				field : 'type',
 				title : 'type',
@@ -188,12 +233,22 @@ $(function(){
 				width : 100,
 				align : 'center',
 				formatter : function(value, row, index){
-					console.log(row.id);	
-					return '<a href = "#" id = "detail' + row.id + '" class = "easyui-linkbutton" onclick = "openUrl(' + row.id + ')">详情</a>' + '|' +'<a href = "#" class = "easyui-linkbutton" onclick = "dataUpdate(' + row.id + ')">修改</a>' + '|' + '<a href = "#" class = "easyui-linkbutton" onclick = "Dele(' + row.id + ')">删除</a>';
+					// console.log(row.id);
+					return '<a href = "javascript:void(0)" id = "detail' + row.id + '" onclick = "openUrl(' + row.id + ')">详情</a>' + '|' +'<a href = "javascript:void(0)" onclick = "dataUpdate(' + row.id + ')">修改</a>' + '|' + '<a href = "javascript:void(0)" onclick = "Dele(' + row.id + ')">删除</a>';
 				}
-			}	
-		]] 
+			}
+		]]
 
 	});
 	$("#table").datagrid('loadData', jsonData_after);
+
+	$.each(data_areas,function(i,val){
+		var value = parseInt(i)+1;
+		$("#select_shop").append('<option value="'+ value +'">'+val.name+'</option>');
+	});
+	$.each(data_origins,function(i,val){
+		var value = parseInt(i)+1;
+		$("#select_area").append('<option value="'+ value +'">'+val+'</option>');
+	});
+	$.parser.parse();
 });

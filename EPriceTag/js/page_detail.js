@@ -1,8 +1,12 @@
 var data_id = $.url().param('id');
+//测试URL
+var g_url = "http://127.0.0.1:8080/pricetaginfo/pricetags"
+//正式URL
+// var g_url = "http://120.26.54.131:8080/pricetag/pricetags"
 var data_qrcode;
 
 function detailCancel(){
-	var cancel_url = document.referrer;	
+	var cancel_url = document.referrer;
 	window.location.replace(cancel_url);
 }
 function detailUpdatejump(){
@@ -12,7 +16,7 @@ function detailUpdatejump(){
 $(function() {
 	$.ajax({
 		method : 'GET',
-		url : 'http://192.168.1.13:8080/pricetaginfo/pricetags/'+data_id,
+		url : g_url+'/'+data_id,
 		async : false,
 		dataType : 'json',
 		crossDomain : true,
@@ -28,13 +32,11 @@ $(function() {
 			}else{
 				$('#goods_visible').html("否");
 			}
-			
-
 			$('#goods_shopid').html(data.data.shopId);
 			$('#goods_type').html(data.data.type);
 			$('#goods_salesprice').html(parseFloat(data.data.salesPrice));
 			$('#goods_propmprice').html(parseFloat(data.data.propmPrice));
-			$('#goods_marketprice').html(parseFloat(data.data.marketPrice));	
+			$('#goods_marketprice').html(parseFloat(data.data.marketPrice));
 			$('#goods_No').html(data.data.goodsNo);
 			$('#goods_origin').html(data.data.goodsOrigin);
 			$('#goods_specifications').html(data.data.specifications);
@@ -57,13 +59,12 @@ $(function() {
 		draggable : false,
 		resizable : false,
 	});
-	$("#qrcode").qrcode({ 
-	    //render: "table", //table方式 
-	    width: 150, //宽度 
-	    height:150, //高度 
-	    text: data_qrcode //任意内容 
-	});
-	
+	$("#qrcode").qrcode({
+		//render: "table", //table方式
+		width: 150, //宽度
+		height:150, //高度
+		text: data_qrcode //任意内容
+		});
 });
 // $('#page3_cancel').click(function(){
 // 	window.history.go(-1);

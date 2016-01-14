@@ -1,0 +1,37 @@
+[
+	{	
+		"state" : "closed",
+		"id" : 1,
+		"text":"A",
+		"children" : [
+			{
+				"state" : "closed",
+				"text" : "a1",
+				"children" : [
+					{
+						"text" : "a1.1"
+					},
+					{
+						"text" : "a1.2"
+					}
+				]
+			},
+			{
+				"text" : "a2"
+			}
+		]
+	},
+	{
+		"state" : "closed",
+		"id" : 2,
+		"text":"B",
+		"children" : [
+			{
+				"text" : "b1"
+			},
+			{
+				"text" : "b2"
+			}
+		]
+	}
+]
