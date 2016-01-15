@@ -1,3 +1,12 @@
+body{
+	min-height: 700px;
+	padding: 0 0 0 0;
+	background-color : #DCDCDC;
+}
+#data_area{
+	background-color : white;
+	min-height: 500px;
+}
 #span_shop,#span_area{
 	margin-left : 10px;
 }
@@ -20,3 +29,6 @@
 #clear_button,#search_button{
 	margin : 0 2px;
 }
+ .datagrid-header-row td{
+ 	font-weight: 600;
+ }
