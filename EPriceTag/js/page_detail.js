@@ -1,8 +1,8 @@
 var data_id = $.url().param('id');
 //测试URL
-var g_url = "http://127.0.0.1:8080/pricetaginfo/pricetags"
+// var g_url = "http://127.0.0.1:8080/pricetaginfo/pricetags"
 //正式URL
-// var g_url = "http://120.26.54.131:8080/pricetag/pricetags"
+var g_url = "http://120.26.54.131:8080/pricetag/pricetags"
 var data_qrcode;
 
 function detailCancel(){

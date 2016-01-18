@@ -3,23 +3,29 @@ td{
 	padding-top: 5px;
 }
 th{
-	width: 50%;
+	width: 30%;
 }
 #page3_button{
 	width : 95%; 
 	text-align : center;
 }
 #page3_cancel{
-	width: 150px;
+	width: 100px;
 	position: absolute;
 	bottom: 10%;
 	right: 15%;
 }
 #page3_submit{
-	width: 150px;
+	width: 100px;
 	position: absolute;
 	bottom: 10%;
 	left: 15%;
+}
+#page3_submit_all{
+	width: 100px;
+	position: absolute;
+	bottom: 10%;
+	left: 40%;
 }
 #box_qrcode{
 	width : 50%; 

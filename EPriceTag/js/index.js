@@ -1,15 +1,16 @@
 var jsonData = "";
 //测试数据（URL）
-var g_url = "http://127.0.0.1:8080/pricetaginfo/pricetags";
-var g_select_url = "http://127.0.0.1:8080/pricetaginfo/selects";
-var g_search_url = "http://127.0.0.1:8080/pricetaginfo/pricetags/query";
+// var g_url = "http://127.0.0.1:8080/pricetaginfo/pricetags";
+// var g_select_url = "http://127.0.0.1:8080/pricetaginfo/selects";
+// var g_search_url = "http://127.0.0.1:8080/pricetaginfo/pricetags/query";
 // var data_origins = ["澳大利亚","日本","美国","新西兰"];
 // var data_areas = [{"id":"KJG001","name":"杨浦店"},{"id":"KJG002","name":"大华店"},{"id":"KJG003","name":"徐汇店"},{"id":"KJG004","name":"浦东店"}];
 //正式数据（URL）
-// var g_url = "http://120.26.54.131:8080/pricetag/pricetags"
-// var g_select_url = "http://120.26.54.131:8080/pricetaginfo/selects";
+var g_url = "http://120.26.54.131:8080/pricetag/pricetags"
+var g_select_url = "http://120.26.54.131:8080/pricetag/selects";
+var g_search_url = "http://120.26.54.131:8080/pricetag/pricetags/query";
 
-//请求table数据，赋值给jsonData
+//请求table数据，赋值给jsonData	
 $.ajax({
 	method : 'GET',
 	url : g_url,
@@ -190,6 +191,7 @@ $(function(){
 	$("#tb").append('<div id="box2" style="padding : 5px"></div>');
 	$("#box2").append('<span id="span_shop">区域：</span><select id="select_shop" onchange="shop_selectboxChange()"></select>');
 	$("#box2").append('<span id="span_area">商品产地：</span><select id="select_area" onchange="area_selectboxChange()"></select>');
+	// $("#box2").append('<a href="javascript:void(0)" id="clear_button" class="easyui-linkbutton" iconCls="icon-save" style="float : right; height : 20px;" onclick="method1()">导出</a>');
 	$("#box2").append('<a href="javascript:void(0)" id="clear_button" class="easyui-linkbutton" iconCls="icon-clear" style="float : right; height : 20px;" onclick="keyClear()">清空</a>');
 	$("#box2").append('<a href="javascript:void(0)" id="search_button" class="easyui-linkbutton" iconCls="icon-search" style="float : right; height: 20px;" onclick="keySearch()">查询</a>');
 	$("#box2").append('<input id="input_search" type="text" class="textbox" name="user">');
@@ -197,13 +199,13 @@ $(function(){
 	$("#select_shop").append('<option value=0>全部</option>');
 	$("#select_area").append('<option value=0>全部</option>');
 
-	$('#tree_box').tree({
-		url : 'tree.json',
-		animate : true,
-		formatter : function(node){
-			return node.text;
-		}
-	});
+	// $('#tree_box').tree({
+	// 	url : 'tree.json',
+	// 	animate : true,
+	// 	formatter : function(node){
+	// 		return node.text;
+	// 	}
+	// });
 
 	$('#table').datagrid({
 		width : 1200,
