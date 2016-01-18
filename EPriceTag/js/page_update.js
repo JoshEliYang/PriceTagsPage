@@ -6,8 +6,8 @@ var g_url = "http://120.26.54.131:8080/pricetag/pricetags"
 var data_qrcode;
 
 function updateCancel () {
-	var cancel_url = document.referrer;
-	window.location.replace(cancel_url);
+	var back_url = "page_list.html";
+	window.location.replace(back_url);
 }
 $(function() {
 	$.ajax({
